@@ -28,7 +28,10 @@ export default {
 
   methods:{
     increment(){
-      this.$store.commit('increase',{value:33})
+      this.$store.commit({
+        type:'increase',
+        value:44,
+      })
     }
   },
 

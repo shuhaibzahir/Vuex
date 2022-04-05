@@ -1,15 +1,12 @@
 <template>
-  <button @click="updateCount">Add</button>
+  <button @click="increase({value:10})">Add</button>
 </template>
 
 <script>
+import {mapActions} from 'vuex'
 export default {
     methods:{
-        updateCount(){
-            this.$store.commit({
-                type:'increment'
-            })
-        }
+        ...mapActions(['increase'])
     }
 }
 </script>
