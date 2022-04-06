@@ -16,7 +16,7 @@ import CounterView from "./components/TheCounter.vue"
 import FavComponent from './components/FavriotValue.vue'
 import AddbButton from './components/AddButton.vue'
 import UserAuth from './components/UserAuth.vue';
-import { mapGetters} from 'vuex'
+import { mapGetters,mapActions} from 'vuex'
 export default {
   components: {
     BaseContainer,
@@ -32,14 +32,14 @@ export default {
   },
 
   computed:{
-    ...mapGetters('auth',{
+    ...mapGetters({
       user:'user'
     })
   },
   methods:{
-    increment(){
-      this.$store.commit("increment")
-    }
+    ...mapActions('counter',{
+        increment:'increment'
+      })
   },
 
 };

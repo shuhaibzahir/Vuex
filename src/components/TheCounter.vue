@@ -1,5 +1,5 @@
 <template>
-  <h3>{{finalCounter}}</h3>
+  <h3>{{normalizeCounter}}</h3>
 </template>
 
 <script>
@@ -8,7 +8,7 @@ export default {
     name:'Counter',
 
     computed:{
-        ...mapGetters(['finalCounter'])
+        ...mapGetters('counter',['normalizeCounter'])
     }
 }
 </script>

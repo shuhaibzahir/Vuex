@@ -4,12 +4,13 @@
 </template>
 
 <script>
+import {mapGetters} from 'vuex'
 export default {
  name:'FavCounter',
     computed:{
-        counter(){
-            return this.$store.getters.finalCounter
-        }
+        ...mapGetters('counter',{
+            counter:'finalCounter'
+        })
     }
 }
 </script>

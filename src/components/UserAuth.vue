@@ -9,9 +9,9 @@ import {mapActions} from 'vuex'
 export default {
 
     methods:{
-        ...mapActions('auth',['login']),
+        ...mapActions(['login']),
         logout(payload){
-            this.$store.dispatch('auth/logout',payload)
+            this.$store.dispatch('logout',payload)
         }
 
     }   
