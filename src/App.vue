@@ -1,9 +1,12 @@
 <template>
-  <base-container title="Vuex">
+  <base-container v-if="user" title="Vuex">
   <counter-view/>
   <button @click="increment">Add 1</button>
   <fav-component></fav-component>
   <addb-button></addb-button>
+  </base-container>
+  <base-container :title="user?'Hi, bro':'Auth'">
+  <user-auth></user-auth>
   </base-container>
 </template>
 
@@ -12,12 +15,15 @@ import BaseContainer from './components/BaseContainer.vue';
 import CounterView from "./components/TheCounter.vue"
 import FavComponent from './components/FavriotValue.vue'
 import AddbButton from './components/AddButton.vue'
+import UserAuth from './components/UserAuth.vue';
+import { mapGetters} from 'vuex'
 export default {
   components: {
     BaseContainer,
     CounterView,
     FavComponent,
-    AddbButton
+    AddbButton,
+    UserAuth
   },
   data(){
     return {
@@ -25,13 +31,14 @@ export default {
     }
   },
 
-
+  computed:{
+    ...mapGetters({
+      user:'user'
+    })
+  },
   methods:{
     increment(){
-      this.$store.commit({
-        type:'increase',
-        value:44,
-      })
+      this.$store.commit("increment")
     }
   },
 

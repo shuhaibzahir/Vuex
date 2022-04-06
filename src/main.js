@@ -3,10 +3,11 @@ import { createStore } from 'vuex';
 
 import App from './App.vue';
 
-const store = createStore({
+const counterModule = {
     state(){
         return {
-            counter:0
+            counter:0,
+            
         }
     },
     mutations:{
@@ -15,7 +16,7 @@ const store = createStore({
         },
         increase(state,payload){
             state.counter = state.counter + payload.value;
-        }
+        },
     },
     actions:{
         increment(context){
@@ -24,7 +25,7 @@ const store = createStore({
         increase(context,payload){
             console.log('middle')
             context.commit('increase',payload)
-        }
+        },
     },
     getters:{
         finalCounter(state){
@@ -39,7 +40,45 @@ const store = createStore({
             }else{
                 return finalCounter
             }
+        },
+    }
+
+}
+
+// if we need to access another module state we can use rootState, rootGetters, 
+// namespaced module then you need to access like this this.$store.getter['counter/finalcounter'] counter is module name and inside of that finalcounter
+const authModule = {
+    state(){
+        return {
+            userLogin:false
         }
+    },
+    mutations:{
+        setAuth(state,payload){
+            state.userLogin=payload.isAuth
+        } 
+    },
+    actions:{
+        
+        login(context,payload){
+            context.commit('setAuth',payload)
+        },
+        logout(context,payload){
+            context.commit('setAuth',payload)
+        },
+    },
+    getters:{
+       
+        user(state){
+            return state.userLogin
+        }
+    }
+}
+
+const store = createStore({
+    modules:{
+        user:authModule,
+        counter:counterModule
     }
 });    
 

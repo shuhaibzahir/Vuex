@@ -1,12 +1,14 @@
 <template>
-  <button @click="increase({value:10})">Add</button>
+  <button @click="inc({value:10})">Add</button>
 </template>
 
 <script>
 import {mapActions} from 'vuex'
 export default {
     methods:{
-        ...mapActions(['increase'])
+        ...mapActions({
+            inc:'increase'
+        })
     }
 }
 </script>
