@@ -48,6 +48,7 @@ const counterModule = {
 // if we need to access another module state we can use rootState, rootGetters, 
 // namespaced module then you need to access like this this.$store.getter['counter/finalcounter'] counter is module name and inside of that finalcounter
 const authModule = {
+    namespaced:true,
     state(){
         return {
             userLogin:false
@@ -77,7 +78,7 @@ const authModule = {
 
 const store = createStore({
     modules:{
-        user:authModule,
+        auth:authModule,
         counter:counterModule
     }
 });    
